@@ -78,11 +78,12 @@ def graficar_tablero(tablero):
     plt.title('Tablero de las 8 Reinas')
     plt.show()
 
-# Ejecutar el algoritmo para el problema de las 8 reinas
-solucion = ascenso_estocastico(n=8, max_iteraciones=1000)
+def ejecutar_ascenso_est():
+    # Ejecutar el algoritmo para el problema de las 8 reinas
+    solucion = ascenso_estocastico(n=8, max_iteraciones=1000)
 
-# Si se encontró una solución (o el último estado generado), graficar el tablero final
-if solucion:
-    graficar_tablero(solucion)
-else:
-    print("No se encontró una solución óptima.")
+    # Si se encontró una solución (o el último estado generado), graficar el tablero final
+    if solucion:
+        graficar_tablero(solucion)
+    else:
+        print("No se encontró una solución óptima.")

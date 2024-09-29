@@ -101,18 +101,20 @@ def graficar_tablero(tablero):
     plt.gca().invert_yaxis()  # Invertir el eje y para que 0,0 esté en la esquina inferior
     plt.show()
 
+def ejecutar_temple():
+
 # Parámetros del algoritmo
-temperatura_inicial = 1000 # Temperatura inicial alta para permitir exploración
-tasa_enfriamiento = 0.95   # Factor de enfriamiento (entre 0 y 1)
-temperatura_umbral = 0.000000001   # Temperatura mínima antes de detener el algoritmo
+    temperatura_inicial = 1000 # Temperatura inicial alta para permitir exploración
+    tasa_enfriamiento = 0.95   # Factor de enfriamiento (entre 0 y 1)
+    temperatura_umbral = 0.000000001   # Temperatura mínima antes de detener el algoritmo
 
-# Ejecutar el algoritmo de temple simulado
-solucion, heuristica_final = temple_simulado_8_reinas(temperatura_inicial, tasa_enfriamiento, temperatura_umbral)
+    # Ejecutar el algoritmo de temple simulado
+    solucion, heuristica_final = temple_simulado_8_reinas(temperatura_inicial, tasa_enfriamiento, temperatura_umbral)
 
-# Mostrar resultado final
-print("\n--- Resultado Final ---")
-print(f"Tablero final = {solucion}")
-print("Número de ataques restantes (Heurística final):", heuristica_final)
+    # Mostrar resultado final
+    print("\n--- Resultado Final ---")
+    print(f"Tablero final = {solucion}")
+    print("Número de ataques restantes (Heurística final):", heuristica_final)
 
-# Graficar el tablero final
-graficar_tablero(solucion)
+    # Graficar el tablero final
+    graficar_tablero(solucion)
