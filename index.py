@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from ascenso_colimas import ejecutar_asencso
 from a_stocástico import ejecutar_ascenso_est
 from temple_simulado import ejecutar_temple
-
+from acenso_colimas_reinicio import ejecutar_reinicio_aleatorio_colinas
 # Configuración de la interfaz gráfica
 BG_COLOR = "#000000"  
 FG_COLOR = "#FFFFFF" 
@@ -57,6 +57,11 @@ def ejecutar_temple_simulado():
     output_text.delete(1.0, tk.END)
     ejecutar_temple()  # El algoritmo se encarga de graficar internamente
 
+def ejecutar_reinicio_aleatorio():
+    ejecutar_reinicio_aleatorio_colinas()  # El algoritmo se encarga de graficar internamente
+
+def ejecutar_reinicio_aleatorio_es():
+    messagebox.showinfo("Reinicio Aleatorio", "¡Funcionalidad en desarrollo!")
 # Crear botones para cada algoritmo
 def crear_boton_moderno(texto, comando):
     return tk.Button(ventana, text=texto, command=comando, font=FONT_BUTTON, bg=BUTTON_COLOR, fg=BUTTON_TEXT_COLOR, bd=0, height=2, activebackground="#555555", activeforeground=BUTTON_TEXT_COLOR)
@@ -71,8 +76,13 @@ boton_ascenso_colinas.grid(row=2, column=1, padx=20, pady=10, sticky="ew")
 boton_temple_simulado = crear_boton_moderno("Temple Simulado", ejecutar_temple_simulado)
 boton_temple_simulado.grid(row=2, column=2, padx=20, pady=10, sticky="ew")
 
+boton_reinicio_aleatorio = crear_boton_moderno("Reinicio Aleatorio ascenso colinas", ejecutar_reinicio_aleatorio)
+boton_reinicio_aleatorio.grid(row=3, column=0, padx=20, pady=10, sticky="ew")  # Ubicación en la fila 3
+
+boton_reinicio_aleatorio = crear_boton_moderno("Reinicio Aleatorio ascenso colinas estocastico", ejecutar_reinicio_aleatorio_es)
+boton_reinicio_aleatorio.grid(row=3, column=2, padx=20, pady=10, sticky="ew")  # Ubicación en la fila 3
 # Configurar el tamaño de la cuadrícula y ejecutar la ventana
 ventana.grid_rowconfigure(1, weight=1) 
 ventana.grid_columnconfigure((0, 1, 2, 3), weight=1)  
-
+ventana.state("zoomed")
 ventana.mainloop()
