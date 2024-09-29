@@ -1,4 +1,5 @@
 import random
+import matplotlib.pyplot as plt
 
 # Función que calcula la heurística: número de ataques entre reinas
 def calcular_heuristica(tablero):
@@ -69,17 +70,45 @@ def ascenso_de_colinas():
     
     return tablero, heuristica_actual, historial_movimientos
 
-solucion, ataques_restantes, historial = ascenso_de_colinas()
+# Función para graficar el tablero de las 8 reinas
+def graficar_tablero(tablero):
+    fig, ax = plt.subplots()
+    n = len(tablero)
 
+    # Dibujar el tablero de ajedrez
+    for row in range(n):
+        for col in range(n):
+            # Colorear cuadros de ajedrez
+            if (row + col) % 2 == 0:
+                color = 'white'
+            else:
+                color = 'gray'
+            ax.add_patch(plt.Rectangle((col, row), 1, 1, color=color))
+
+    # Colocar las reinas en el tablero
+    for col in range(n):
+        row = tablero[col]
+        ax.text(col + 0.5, row + 0.5, '♕', fontsize=30, ha='center', va='center', color='black' if (row + col) % 2 == 0 else 'white')
+
+    # Ajustes finales del gráfico
+    ax.set_xlim(0, n)
+    ax.set_ylim(0, n)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_title("Tablero de las 8 Reinas")
+    plt.gca().invert_yaxis()  # Invertir el eje y para que 0,0 esté en la esquina inferior
+    plt.show()
+
+# Ejecutar el algoritmo de ascenso de colinas para el problema de las 8 reinas
+solucion, ataques_restantes, historial = ascenso_de_colinas()
 
 print("\n--- Historial de Movimientos ---")
 for paso, (tablero, ataques) in enumerate(historial):
     print(f"Paso {paso}: Tablero = {tablero} | Ataques = {ataques}")
 
-
 print("\n--- Resultado Final ---")
 print("Tablero final:", solucion)
 print("Número de ataques restantes:", ataques_restantes)
 
-
-print("\n-######################################################################################################")
+# Graficar el tablero final
+graficar_tablero(solucion)
