@@ -30,8 +30,8 @@ def generar_vecino(tablero):
     vecino[col] = fila_nueva
     return vecino
 
-# Algoritmo de temple simulado para las 8 reinas
-def temple_simulado_8_reinas(temperatura_inicial, tasa_enfriamiento, iteraciones):
+# Algoritmo de temple simulado para las 8 reinas con criterios de parada adaptativos
+def temple_simulado_8_reinas(temperatura_inicial, tasa_enfriamiento, temperatura_umbral=0.1):
     # Generar un estado inicial aleatorio (un tablero con 8 reinas)
     tablero_actual = generar_tablero_inicial()
     heuristica_actual = calcular_heuristica(tablero_actual)
@@ -40,8 +40,12 @@ def temple_simulado_8_reinas(temperatura_inicial, tasa_enfriamiento, iteraciones
     mejor_heuristica = heuristica_actual
     
     temperatura = temperatura_inicial
-    
-    for i in range(iteraciones):
+    iteracion = 0  # Contador de iteraciones (solo para monitoreo, no para detener el bucle)
+
+    # Bucle controlado por la temperatura y la heurística
+    while temperatura > temperatura_umbral and mejor_heuristica > 0:
+        iteracion += 1
+
         # Generar un vecino aleatorio del estado actual
         tablero_vecino = generar_vecino(tablero_actual)
         heuristica_vecino = calcular_heuristica(tablero_vecino)
@@ -58,17 +62,14 @@ def temple_simulado_8_reinas(temperatura_inicial, tasa_enfriamiento, iteraciones
             if heuristica_vecino < mejor_heuristica:
                 mejor_tablero = tablero_vecino[:]
                 mejor_heuristica = heuristica_vecino
-        
+
         # Enfriar la temperatura
         temperatura *= tasa_enfriamiento
-        
-        # Mostrar progreso
-        print(f"Iteración {i+1}: Heurística = {heuristica_actual}, Mejor Heurística = {mejor_heuristica}, Temperatura = {temperatura:.4f}")
-        
-        # Si se encuentra la solución óptima (heurística = 0), detener
-        if mejor_heuristica == 0:
-            break
 
+        # Mostrar progreso con el tablero en cada iteración en formato lista
+        print(f"Iteración {iteracion}: Tablero = {tablero_actual}, Heurística actual = {heuristica_actual}, Temperatura = {temperatura:.4f}")
+
+    print(f"Deteniendo el algoritmo. Temperatura alcanzada: {temperatura:.4f}, Heurística actual: {heuristica_actual}")
     return mejor_tablero, mejor_heuristica
 
 # Función para graficar el tablero de las 8 reinas
@@ -101,16 +102,16 @@ def graficar_tablero(tablero):
     plt.show()
 
 # Parámetros del algoritmo
-temperatura_inicial = 100  # Temperatura inicial alta para permitir exploración
-tasa_enfriamiento = 0.95  # Factor de enfriamiento (entre 0 y 1)
-iteraciones = 1000  # Número de iteraciones
+temperatura_inicial = 1000 # Temperatura inicial alta para permitir exploración
+tasa_enfriamiento = 0.95   # Factor de enfriamiento (entre 0 y 1)
+temperatura_umbral = 0.000000001   # Temperatura mínima antes de detener el algoritmo
 
 # Ejecutar el algoritmo de temple simulado
-solucion, heuristica_final = temple_simulado_8_reinas(temperatura_inicial, tasa_enfriamiento, iteraciones)
+solucion, heuristica_final = temple_simulado_8_reinas(temperatura_inicial, tasa_enfriamiento, temperatura_umbral)
 
-# Mostrar resultado
+# Mostrar resultado final
 print("\n--- Resultado Final ---")
-print("Tablero final:", solucion)
+print(f"Tablero final = {solucion}")
 print("Número de ataques restantes (Heurística final):", heuristica_final)
 
 # Graficar el tablero final
