@@ -100,15 +100,16 @@ def graficar_tablero(tablero):
     plt.show()
 
 # Ejecutar el algoritmo de ascenso de colinas para el problema de las 8 reinas
-solucion, ataques_restantes, historial = ascenso_de_colinas()
+def ejecutar_asencso():
+    solucion, ataques_restantes, historial = ascenso_de_colinas()
 
-print("\n--- Historial de Movimientos ---")
-for paso, (tablero, ataques) in enumerate(historial):
-    print(f"Paso {paso}: Tablero = {tablero} | Ataques = {ataques}")
+    print("\n--- Historial de Movimientos ---")
+    for paso, (tablero, ataques) in enumerate(historial):
+        print(f"Paso {paso}: Tablero = {tablero} | Ataques = {ataques}")
 
-print("\n--- Resultado Final ---")
-print("Tablero final:", solucion)
-print("Número de ataques restantes:", ataques_restantes)
+    print("\n--- Resultado Final ---")
+    print("Tablero final:", solucion)
+    print("Número de ataques restantes:", ataques_restantes)
 
-# Graficar el tablero final
-graficar_tablero(solucion)
+    # Graficar el tablero final
+    graficar_tablero(solucion)
