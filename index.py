@@ -5,6 +5,7 @@ from ascenso_colimas import ejecutar_asencso
 from a_stocástico import ejecutar_ascenso_est
 from temple_simulado import ejecutar_temple
 from acenso_colimas_reinicio import ejecutar_reinicio_aleatorio_colinas
+from r_aleatorio import ejecutar_ascenso_est_rei
 # Configuración de la interfaz gráfica
 BG_COLOR = "#000000"  
 FG_COLOR = "#FFFFFF" 
@@ -61,7 +62,7 @@ def ejecutar_reinicio_aleatorio():
     ejecutar_reinicio_aleatorio_colinas()  # El algoritmo se encarga de graficar internamente
 
 def ejecutar_reinicio_aleatorio_es():
-    messagebox.showinfo("Reinicio Aleatorio", "¡Funcionalidad en desarrollo!")
+    ejecutar_ascenso_est_rei()  # El algoritmo se encarga de graficar internamente
 # Crear botones para cada algoritmo
 def crear_boton_moderno(texto, comando):
     return tk.Button(ventana, text=texto, command=comando, font=FONT_BUTTON, bg=BUTTON_COLOR, fg=BUTTON_TEXT_COLOR, bd=0, height=2, activebackground="#555555", activeforeground=BUTTON_TEXT_COLOR)

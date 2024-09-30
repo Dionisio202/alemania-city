@@ -48,15 +48,11 @@ def graficar_tablero(tablero, title="Tablero de 8 Reinas"):
     plt.title(title)
     plt.show()
 
-<<<<<<< HEAD
-# Ejecutar el algoritmo para el problema de las 8 reinas con reinicio aleatorio y graficar el tablero final
-solucion, mejor_reinicio = ascenso_estocastico_reinicio_aleatorio(num_reinicios=4)
-=======
-solucion, mejor_reinicio = ascenso_estocastico_reinicio_aleatorio(num_reinicios=100)
->>>>>>> 5224330eb19574559c4b3dfada0e1887c31a82cb
+def ejecutar_ascenso_est_rei():
+    solucion, mejor_reinicio = ascenso_estocastico_reinicio_aleatorio(num_reinicios=4)
 
-if solucion:
-    print(f"Solución graficada corresponde al reinicio número: {mejor_reinicio}")
-    graficar_tablero(solucion, title=f"Solución Final de las 8 Reinas (Reinicio {mejor_reinicio})")
-else:
-    print("No se encontró una solución óptima.")
+    if solucion:
+        print(f"Solución graficada corresponde al reinicio número: {mejor_reinicio}")
+        graficar_tablero(solucion, title=f"Solución Final de las 8 Reinas (Reinicio {mejor_reinicio})")
+    else:
+        print("No se encontró una solución óptima.")
